@@ -1,3 +1,11 @@
+//Document is the DOM can be accessed in the console with document.window.
+// Tree is from the top, html, body, p etc.
+
+//Problem: User interaction does not provide the correct results.
+//Solution: Add interactivity so the user can manage daily tasks.
+//Break things down into smaller steps and take each step at a time.
+
+
 //Event handling, uder interaction is what starts the code execution.
 
 var taskInput=document.getElementById("new-task");//Add a new task.
@@ -8,6 +16,9 @@ var completedTasksHolder=document.getElementById("completed-tasks");//completed-
 
 //New task list item
 var createNewTaskElement=function(taskString){
+
+    if (!taskString || taskString ===null)
+        return 0;
 
 	var listItem=document.createElement("li");
 
@@ -188,31 +199,41 @@ btn.onclick = function() {
     var completedList = document.getElementById("completed-tasks")
     var completedListTag = completedList.getElementsByTagName("li");
     var i;
-    var todo = document.createElement("li");
-    var done = document.createElement("li");
     var modalContent = document.getElementById("modal-content");
     var todoContent = document.getElementById("todoModal");
     var doneContent = document.getElementById("doneModal");
 
-    //deleting previous entry
-    var ul = document.getElementById("todoModal");
-    while(ul.firstChild) ul.removeChild(ul.firstChild)
-    ul = document.getElementById("doneModal");
-    while(ul.firstChild) ul.removeChild(ul.firstChild)
+    
+    console.log("test1");
 
-    console.log("test");
-    for (i = 0; i < incompleteListTag.length; i++) {
-        var elem = document.querySelector(".incomplete-tasks li label");
-        todo.innerText = elem.textContent;
+    var list = document.getElementById("incomplete-tasks")
+    while(list.firstChild) {
+        var todo = document.createElement("li");
+        var elem = list.firstChild;
+        if (elem === null) {
+            break;
+        }
+        console.log("test 1.1");
+        console.log(elem);
+        todo.innerText = elem.textContent.replace('EditDelete', '');
         todoContent.appendChild(todo);
-        var list = document.getElementById("incomplete-tasks")
         list.removeChild(list.firstChild);
     }
-    for (i = 0; i < completedListTag.length; i++) {
-        var elem = document.querySelector(".completed-tasks li label");
-        done.innerText = elem.textContent;
+        
+    console.log("test2");
+
+
+    list = document.getElementById("completed-tasks")
+    while(list.firstChild) {
+        var done = document.createElement("li");
+        var elem = list.firstChild;
+        if (elem === null) {
+            break;
+        }
+        console.log(elem.textContent);
+        done.innerText = elem.textContent.replace('EditDelete', '');
         doneContent.appendChild(done);
-        var list = document.getElementById("completed-tasks")
+        list.removeChild(list.firstChild);
     }
     console.log("test3");
   modal.style.display = "block";
