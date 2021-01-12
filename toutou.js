@@ -237,10 +237,3 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
-
-// Issues with usabiliy don't get seen until they are in front of a human tester.
-
-//prevent creation of empty tasks.
-
-//Shange edit to save when you are in edit mode.
